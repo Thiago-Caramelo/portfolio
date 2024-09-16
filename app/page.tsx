@@ -1,34 +1,34 @@
 import {
-  ArrowPathIcon,
-  CloudArrowUpIcon,
-  FingerPrintIcon,
-  LockClosedIcon,
+  CloudIcon,
+  PaperAirplaneIcon,
+  CodeBracketIcon,
+  AdjustmentsHorizontalIcon,
 } from "@heroicons/react/24/outline";
 
 const features = [
   {
     name: "Azure",
     description:
-      "Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.",
-    icon: CloudArrowUpIcon,
+      "Efficient and custom software solutions to drive business value, leveraging extensive expertise in Microsoft Azure.",
+    icon: CloudIcon,
   },
   {
     name: ".NET and React",
     description:
-      "Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.",
-    icon: LockClosedIcon,
+      "Building comprehensive, full-stack web solutions using .NET and React, creating highly efficient and scalable applications tailored to business needs.",
+    icon: CodeBracketIcon,
   },
   {
     name: "Telegram bots",
     description:
-      "Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.",
-    icon: ArrowPathIcon,
+      "Custom Telegram Bots tailored to any workflow, seamlessly integrating with external systems and APIs. Whether it's handling complex interactions or automating business processes.",
+    icon: PaperAirplaneIcon,
   },
   {
     name: "Legacy .NET maintenance",
     description:
-      "Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.",
-    icon: FingerPrintIcon,
+      "Extensive experience working with .NET legacy systems, offering seamless migration to cloud-native environments in Azure. With a deep understanding of legacy architectures and cloud modernization strategies.",
+    icon: AdjustmentsHorizontalIcon,
   },
 ];
 
