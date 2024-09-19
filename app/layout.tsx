@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Disclosure,
   DisclosureButton,
@@ -5,23 +7,19 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import "./globals.css";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Azure", href: "#", current: false },
-  { name: ".NET and React", href: "#", current: false },
-  { name: "Telegram", href: "#", current: false },
-  { name: "Legacy .NET", href: "#", current: false },
+  { name: "Home", href: "/" },
+  { name: "Azure", href: "/azure" },
+  { name: ".NET and React", href: "/net-react" },
+  { name: "Telegram", href: "/telegram" },
+  { name: "Legacy .NET", href: "/legacy" },
 ];
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
+  return classes.join(" ");
 }
 
 export default function RootLayout({
@@ -29,6 +27,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [currentPage, setCurrentPage] = useState<string>(navigation[0].name);
+  const router = useRouter();
+
   return (
     <html className="h-full bg-gray-100">
       <body className="h-full">
@@ -47,19 +48,24 @@ export default function RootLayout({
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item) => (
-                        <a
+                        <button
                           key={item.name}
-                          href={item.href}
-                          aria-current={item.current ? "page" : undefined}
+                          onClick={() => {
+                            setCurrentPage(item.name);
+                            router.push(item.href);
+                          }}
+                          aria-current={
+                            currentPage === item.name ? "page" : undefined
+                          }
                           className={classNames(
-                            item.current
+                            currentPage === item.name
                               ? "bg-gray-900 text-white"
                               : "text-gray-300 hover:bg-gray-700 hover:text-white",
                             "rounded-md px-3 py-2 text-sm font-medium"
                           )}
                         >
                           {item.name}
-                        </a>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -92,9 +98,11 @@ export default function RootLayout({
                     key={item.name}
                     as="a"
                     href={item.href}
-                    aria-current={item.current ? "page" : undefined}
+                    aria-current={
+                      currentPage === item.name ? "page" : undefined
+                    }
                     className={classNames(
-                      item.current
+                      currentPage === item.name
                         ? "bg-gray-900 text-white"
                         : "text-gray-300 hover:bg-gray-700 hover:text-white",
                       "block rounded-md px-3 py-2 text-base font-medium"
@@ -103,25 +111,6 @@ export default function RootLayout({
                     {item.name}
                   </DisclosureButton>
                 ))}
-              </div>
-              <div className="border-t border-gray-700 pb-3 pt-4">
-                <div className="flex items-center px-5">
-                  <div className="flex-shrink-0">
-                    <img
-                      alt=""
-                      src={user.imageUrl}
-                      className="h-10 w-10 rounded-full"
-                    />
-                  </div>
-                  <div className="ml-3">
-                    <div className="text-base font-medium leading-none text-white">
-                      {user.name}
-                    </div>
-                    <div className="text-sm font-medium leading-none text-gray-400">
-                      {user.email}
-                    </div>
-                  </div>
-                </div>
               </div>
             </DisclosurePanel>
           </Disclosure>
